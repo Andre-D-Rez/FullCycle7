@@ -1,0 +1,5 @@
+coverage
+flask
+gunicorn
+prometheus-flask-exporter
+psutil
