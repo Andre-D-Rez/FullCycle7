@@ -25,11 +25,6 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    volumes:
-      - ./grafana/config.ini:/etc/grafana/grafana.ini
-      - ./grafana/datasource.yaml:/etc/grafana/provisioning/datasources/default.yaml
-      - ./grafana/dashboard.yaml:/etc/grafana/provisioning/dashboards/default.yaml
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - "3000:3000"
     networks:
