@@ -1,9 +1,14 @@
 from flask import Flask, request
 from app.logger import log_event, configure_logging
 from app.utils import get_request_metadata
+from prometheus_flask_exporter import PrometheusMetrics
+
 
 app = Flask(__name__)
 app.logger = configure_logging()
+
+# Inicializa o Prometheus depois de criar o app
+metrics = PrometheusMetrics(app)
 
 @app.route('/health-check')
 def health_check():
@@ -23,6 +28,6 @@ def hello():
         log_event(app.logger, "info", "hello-success", **metadata, nome=name)
         return f"Hello, {name}!"
 
-if __name__ == "__main__": # pragma: no cover
-    #app.run(debug=True)
-    app.run(host='0.0.0.0')
+if __name__ == "__main__":  # pragma: no cover
+    # app.run(debug=True)
+    app.run(host="0.0.0.0")
